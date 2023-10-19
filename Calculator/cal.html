@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            background-image: url('cal.png');
+        }
+        .calculator {
+            max-width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+        .result {
+            font-size: 30px;
+            text-align: right;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 10px;
+        }
+        .button {
+            font-size: 24px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="result" id="result">0</div>
+        <div class="buttons">
+           <div class="button" onclick="appendToResult('7')">7</div>
+            <div class="button" onclick="appendToResult('8')">8</div>
+            <div class="button" onclick="appendToResult('9')">9</div>
+            <div class="button" onclick="clearResult()">C</div>
+            <div class="button" onclick="appendToResult('4')">4</div>
+            <div class="button" onclick="appendToResult('5')">5</div>
+            <div class="button" onclick="appendToResult('6')">6</div>
+            <div class="button" onclick="appendToResult('+')">+</div>
+            <div class="button" onclick="appendToResult('1')">1</div>
+            <div class="button" onclick="appendToResult('2')">2</div>            
+            <div class="button" onclick="appendToResult('3')">3</div>
+            <div class="button" onclick="appendToResult('.')">.</div>
+            <div class="button" onclick="appendToResult('0')">0</div>
+            <div class="button" onclick="appendToResult('00')">00</div>
+            <div class="button" onclick="appendToResult('-')">-</div>
+            <div class="button" onclick="appendToResult('*')">*</div>
+            <div class="button" onclick="appendToResult('/')">/</div>
+            <div class="button" onclick="calculateResult()">=</div>
+        </div>
+    </div>
+
+    <script>
+        function clearResult() {
+            document.getElementById("result").innerHTML = "0";
+        }
+
+        function appendToResult(value) {
+            const currentResult = document.getElementById("result").innerHTML;
+            if (currentResult === "0" && value !== ".") {
+                document.getElementById("result").innerHTML = value;
+            } else {
+                document.getElementById("result").innerHTML += value;
+            }
+        }
+
+        function calculateResult() {
+            const currentResult = document.getElementById("result").innerHTML;
+            try {
+                const result = eval(currentResult);
+                document.getElementById("result").innerHTML = result;
+            } catch (error) {
+                document.getElementById("result").innerHTML = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
